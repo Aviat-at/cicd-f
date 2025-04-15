@@ -15,7 +15,7 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
 | Component | Description |
 |-----------|-------------|
 | Azure VM | Hosts lightweight K3s Kubernetes cluster |
-| K3s | Production-grade Kubernetes distribution |
+| K8s | Production-grade Kubernetes distribution |
 | PostgreSQL | Database (containerized or Azure Database) |
 | Django API | Backend container with Gunicorn/ASGI |
 | React Frontend | Static assets served via Nginx |
