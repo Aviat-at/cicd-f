@@ -98,7 +98,30 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
        v
 [ App Running ]
 
+# GitHub Actions to AKS CI/CD Flow
 
+```text
+[ GitHub Actions ]
+       |
+       | 1. Build Docker images
+       | 2. Push to Azure Container Registry (ACR)
+       v
+[ Azure Container Registry ]
+       |
+       | 3. Jenkins gets triggered (via webhook or polling)
+       v
+[ Jenkins in VM or Container ]
+       |
+       | 4. Jenkins runs Ansible playbook
+       |    -> Logs into AKS
+       |    -> Pulls image from ACR
+       |    -> kubectl apply -f deployment.yaml
+       v
+[ AKS Cluster ]
+       |
+       v
+[ App Running ]
+'''
 
 
 ### 4. CD Pipeline (Jenkins) (Future Implementation): 
