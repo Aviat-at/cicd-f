@@ -21,6 +21,7 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
 | Jenkins | CD automation server for deployments |
 | GitHub Actions | CI automation for builds |
 | ACR | Azure Container Registry for Docker images |
+|Monitoring |	Prometheus + Grafana |
 
 ## Deployment Phases
 
