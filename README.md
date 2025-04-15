@@ -2,70 +2,88 @@
 
 ## Project Overview
 A cloud-native deployment pipeline for a full-stack application (Django + React + PostgreSQL) on Azure, featuring:
-- **Infrastructure-as-Code**: Azure VM + K3s cluster provisioned via Terraform
-- **Containerization**: Dockerized Django backend and React frontend
-- **Orchestration**: Kubernetes deployments with persistent storage
-- **CI/CD Automation**: Jenkins pipeline for build/deploy workflows (future implementation)
 
----
+- **Infrastructure-as-Code**: Azure VM + K3s cluster provisioned via Terraform  
+- **Containerization**: Dockerized Django backend and React frontend  
+- **Orchestration**: Kubernetes deployments with persistent storage  
+- **CI/CD Automation**:  
+  - **CI**: GitHub Actions for build and image publishing  
+  - **CD**: Jenkins pipeline for deployment workflows  
 
 ## Key Components
-| Component           | Description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
-| **Azure VM**         | Hosts lightweight K3s Kubernetes cluster                                    |
-| **K3s**              | Production-grade Kubernetes distribution optimized for resource efficiency |
-| **PostgreSQL**       | Database (containerized or Azure Database for PostgreSQL)                   |
-| **Django API**       | Backend container with Gunicorn/ASGI server                                 |
-| **React Frontend**   | Static assets served via Nginx container                                    |
-| **Jenkins**          | CI/CD automation server (to be deployed post-demo)                          |
-| **Azure Container Registry** | Private Docker image storage                                            |
 
----
+| Component | Description |
+|-----------|-------------|
+| Azure VM | Hosts lightweight K3s Kubernetes cluster |
+| K3s | Production-grade Kubernetes distribution |
+| PostgreSQL | Database (containerized or Azure Database) |
+| Django API | Backend container with Gunicorn/ASGI |
+| React Frontend | Static assets served via Nginx |
+| Jenkins | CD automation server for deployments |
+| GitHub Actions | CI automation for builds |
+| ACR | Azure Container Registry for Docker images |
 
 ## Deployment Phases
 
 ### 1. Infrastructure Provisioning (Terraform)
-- **Azure Resources**:  
-  1. **Resource Group**  
-   - Central container for all resources
-  
-2. **Virtual Network (VNet)**  
-   - Private network space
-   - Isolated environment for all components
 
-3. **Kubernetes Cluster (AKS)**  
-   - Managed Kubernetes service
+**Azure Resources:**
+- **Resource Group**  
+  Central container for all resources  
+- **Virtual Network (VNet)**  
+  Private network space for components  
+- **Kubernetes Cluster (AKS)**  
+  Managed Kubernetes service  
+- **PostgreSQL Database**  
+  Flexible Server with VNet integration  
 
-4. **PostgreSQL Database**  
-   - Flexible Server with VNet integration
-     
 ### 2. Application Containerization
-- **Django**:  
-  - Multi-stage build for Python dependencies
-  - Environment variables for database/config
-    
-- **React**:  
-  - Optimized production build with caching
-  - Nginx reverse proxy configuration
-    
-- **Registry**:  
-  - Images pushed to Azure Container Registry (ACR)
-  - Versioned using Git commit hashes
 
-### 3. Kubernetes Deployment (Jenkins Pipeline)
-- **Cluster Configuration**:  
-  - Namespace isolation (`prod`/`staging`)
-  - Deployment objects with readiness probes
-  - Services (ClusterIP for internal communication)
-  - PersistentVolumeClaims for PostgreSQL
-    
-- **Jenkins Workflow** (Future Implementation):  
-  - Pipeline-as-Code (`Jenkinsfile`)
-  - Automated image builds on Git push
-  - Canary deployment strategy
-  - Rollback on failed health checks
+**Django:**
+- Multi-stage Docker build  
+- Environment variables for configuration  
+- Security scanning in build process  
 
+**React:**
+- Optimized production build  
+- Nginx with proper caching headers  
 
+**Registry:**
+- Images built and pushed to ACR via GitHub Actions  
+- Tags based on Git commit SHA  
+
+### 3. CI Pipeline (GitHub Actions)
+
+**Workflow Triggers:**
+- On push to main branch  
+- On pull requests  
+
+**CI Steps:**
+1. **Build & Test**  
+   - Install Python/Node dependencies  
+   - Run unit tests for Django/React  
+   - Build production assets  
+
+2. **Container Build**  
+   - Build Docker images for backend/frontend  
+   - Scan images for vulnerabilities  
+
+3. **Registry Push**  
+   - Authenticate with ACR  
+   - Push images with `git-commit-sha` tags  
+   - Additional `latest` tag for main branch  
+
+### 4. CD Pipeline (Jenkins) (Future Implementation): 
+
+**Deployment Workflow:**
+1. **Trigger Conditions**  
+   - Successful CI completion  
+   - Manual approval for production  
+2. **Cluster Configuration**  
+3. **Deployment Strategies**  
+4. **Post-Deployment**  
+
+  
 #
 
 ## Application Overview
