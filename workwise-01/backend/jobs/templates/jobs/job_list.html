@@ -1,0 +1,9 @@
+<h1>Job List</h1>
+<ul>
+    {% for job in jobs %}
+        <li>
+            <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a>
+            - Priority: {{ job.get_priority_display }}
+        </li>
+    {% endfor %}
+</ul>
