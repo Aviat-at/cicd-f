@@ -3,7 +3,7 @@
 ## Project Overview
 A cloud-native deployment pipeline for a full-stack application (Django + React + PostgreSQL) on Azure, featuring:
 
-- **Infrastructure-as-Code**: Azure VM + K3s cluster provisioned via Terraform  
+- **Infrastructure-as-Code**: AKS cluster provisioned via Terraform  
 - **Containerization**: Dockerized Django backend and React frontend  
 - **Orchestration**: Kubernetes deployments with persistent storage  
 - **CI/CD Automation**:  
