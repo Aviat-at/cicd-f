@@ -121,7 +121,7 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
        |
        v
 [ App Running ]
-'''
+```
 
 
 ### 4. CD Pipeline (Jenkins) (Future Implementation): 
