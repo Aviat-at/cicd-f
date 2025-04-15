@@ -74,6 +74,9 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
    - Additional `latest` tag for main branch  
 
 
+# GitHub Actions to AKS CI/CD Flow
+
+```text
 [ GitHub Actions ]
        |
        | 1. Build Docker images
@@ -94,6 +97,7 @@ A cloud-native deployment pipeline for a full-stack application (Django + React 
        |
        v
 [ App Running ]
+
 
 
 
