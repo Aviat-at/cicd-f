@@ -1,33 +1,24 @@
 variable "project_name" {
-  type        = string
-  description = "Project name for resource naming"
+  type = string
+  default = "demo"
 }
 
 variable "env" {
-  type        = string
-  description = "Environment name (dev, staging, prod)"
+  type = string
+  default = "prod"
 }
 
 variable "location" {
-  type    = string
+  type = string
   default = "East US"
 }
 
 variable "node_count" {
-  type    = number
+  type = number
   default = 1
 }
 
 variable "vm_size" {
-  type    = string
-  default = "Standard_B2s"
-}
-
-variable "db_admin" {
   type = string
-}
-
-variable "db_password" {
-  type      = string
-  sensitive = true
+  default = "Standard_B2s"
 }

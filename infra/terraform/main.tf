@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
 }
@@ -10,7 +19,7 @@ resource "azurerm_resource_group" "this" {
 resource "azurerm_virtual_network" "this" {
   name                = "${var.project_name}-${var.env}-vnet"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.this.location
+  location            = var.location
   resource_group_name = azurerm_resource_group.this.name
 }
 
@@ -28,9 +37,9 @@ resource "azurerm_kubernetes_cluster" "this" {
   dns_prefix          = "${var.project_name}-${var.env}"
 
   default_node_pool {
-    name       = "default"
-    node_count = var.node_count
-    vm_size    = var.vm_size
+    name           = "default"
+    node_count     = var.node_count
+    vm_size        = var.vm_size
     vnet_subnet_id = azurerm_subnet.this.id
   }
 
@@ -38,27 +47,14 @@ resource "azurerm_kubernetes_cluster" "this" {
     type = "SystemAssigned"
   }
 
+  network_profile {
+    network_plugin = "azure"
+    dns_service_ip = "10.0.2.10"
+    service_cidr   = "10.0.2.0/24"
+  }
+
   tags = {
     environment = var.env
     project     = var.project_name
   }
-}
-
-resource "azurerm_postgresql_flexible_server" "this" {
-  name                   = "${var.project_name}-${var.env}-pg"
-  resource_group_name    = azurerm_resource_group.this.name
-  location               = azurerm_resource_group.this.location
-  administrator_login    = var.db_admin
-  administrator_password = var.db_password
-  sku_name               = "B1ms"
-  version                = "13"
-  storage_mb             = 32768
-
-  authentication {
-    password_auth_enabled = true
-  }
-
-  delegated_subnet_id = azurerm_subnet.this.id
-
-  depends_on = [azurerm_subnet.this]
 }
