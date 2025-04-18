@@ -1,6 +1,84 @@
+<<<<<<< feature/infra-setup
 env/
 venv/
 .DS_Store
 *.pyc
 __pycache__/
 .venv/
+=======
+# =====================
+# Python / Django
+# =====================
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+.env
+.env.*
+db.sqlite3
+
+# Django migrations
+**/migrations/
+!**/migrations/__init__.py
+
+# Virtual envs
+venv/
+.env/
+*.egg-info/
+*.eggs/
+*.idea/
+.Python
+pip-log.txt
+
+# =====================
+# Node / React
+# =====================
+node_modules/
+build/
+dist/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.lock
+
+# =====================
+# OS & Editor Junk
+# =====================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# =====================
+# Docker
+# =====================
+*.pid
+docker-compose.override.yml
+
+# =====================
+# Terraform
+# =====================
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+crash.log
+*.bak
+*.log
+
+# =====================
+# Kubernetes Secrets / Configs
+# =====================
+*.crt
+*.key
+*.pem
+secrets.yaml
+kubeconfig
+>>>>>>> main
