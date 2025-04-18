@@ -45,7 +45,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: asd123
           POSTGRES_DB: workwise_db
-          DATABASE_HOST: db
+          DATABASE_HOST: localhost
           DATABASE_PORT: 5432
         run: |
           cd backend
