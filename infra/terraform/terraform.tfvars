@@ -1,4 +1,5 @@
-project_name = "myapp"
-env          = "dev"
-db_admin     = "pgadmin"
-db_password  = "MyStrongPassword123!"
+project_name = "demo"
+env          = "prod"
+location     = "East US"
+node_count   = 1
+vm_size      = "Standard_B2s"
