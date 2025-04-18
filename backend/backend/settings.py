@@ -108,11 +108,11 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'workwise_db',          # Your PostgreSQL database name
-        'USER': 'postgres',         # Your PostgreSQL username
-        'PASSWORD': 'asd123', # Your PostgreSQL password
-        'HOST': 'localhost',      # The database host
-        'PORT': '5432',           # The PostgreSQL port
+        'NAME': os.environ.get('DB_NAME', 'workwise_db'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'asd123'),
+        'HOST': os.environ.get('DB_HOST', 'db'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 

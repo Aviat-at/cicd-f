@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: workwise_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: asd123
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+    - DB_NAME=workwise_db
+    - DB_USER=postgres
+    - DB_PASSWORD=asd123
+    - DB_HOST=db
+    - DB_PORT=5432
