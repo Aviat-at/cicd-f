@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: akashtharindu/workwise-backend:latest 
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DB_NAME
+              value: workwise_db
+
+            - name: DB_USER
+              value: admin
+            - name: DB_HOST
+              value: postgres  # Kubernetes service name for your DB (change if needed)
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key:  POSTGRES_PASSWORD
