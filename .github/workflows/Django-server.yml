@@ -42,11 +42,11 @@ jobs:
       - name: Run Django tests with coverage
         env:
           DJANGO_SETTINGS_MODULE: backend.settings
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: asd123
-          POSTGRES_DB: workwise_db
-          DATABASE_HOST: localhost
-          DATABASE_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: asd123
+          DB_DB: workwise_db
+          DB_HOST: localhost
+          DB_PORT: 5432
         run: |
           cd backend
           coverage run manage.py test
