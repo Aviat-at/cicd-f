@@ -111,7 +111,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'workwise_db'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'asd123'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'HOST': os.environ['DB_HOST'],
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
