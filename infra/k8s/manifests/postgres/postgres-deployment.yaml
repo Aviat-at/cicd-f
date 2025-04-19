@@ -21,7 +21,7 @@ spec:
             - name: PGDATA
               value: /mtv/postgres-data/data
             - name: POSTGRES_DB
-              value: mydb
+              value: workwise_db
             - name: POSTGRES_USER
               value: admin
             - name: POSTGRES_PASSWORD
